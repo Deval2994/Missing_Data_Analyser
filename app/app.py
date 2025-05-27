@@ -8,8 +8,6 @@ import streamlit as st
 import pandas as pd
 import os
 
-from statsmodels.sandbox.distributions.sppatch import expect
-
 from mcar_test import is_mcar
 import cca
 import visualizations as VG
