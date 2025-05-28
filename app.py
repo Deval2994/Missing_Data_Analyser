@@ -17,9 +17,9 @@ import nan_mapping
 
 st.info("I built a web app to show my understanding of Complete Case Analysis (CCA) and imputation techniques."
              " The app lets users upload a dataset, perform CCA or various imputations, and visualize how the data "
-             "distributions change before and after cleaning.")
+             "distributions change before and after cleaning by comparing both CCA and imputation side by side.")
 # Title
-st.title("🧹 Missing Data Analysis - Compare CCA vs Imputation")
+st.title("🧹 Missing Data Analysis")
 # Sidebar for dataset selection                                                                                         Sidebar for dataset selection
 st.sidebar.header("📂 Dataset Options")
 use_default = st.sidebar.radio("Choose dataset source:", ("Use my dataset", "Upload your own"))
@@ -47,6 +47,7 @@ else:
 
 
 
+
 # Store app state using session_state                                                                                   Store app state using session_state
 if "step" not in st.session_state:
     st.session_state.step = "preview"
@@ -54,19 +55,24 @@ if "step" not in st.session_state:
 # Step 1: Dataset loaded and showing preview
 if df is not None and st.session_state.step == "preview":
 
+    st.header("📄 Dataset Preview")
+    st.dataframe(df.head())
+
+    if st.button("Continue with dropping columns"):
+        st.session_state.step = "drop_columns"
+        st.session_state.df = df  # Save to session
+
+
+if df is not None:
     try:
+        st.header('❗Missing values in column, drop if 30-40%')
+        st.markdown("**recommendation:** *drop if >30%, because the data loss will be more than 30%, which is not okay for CCA*")
         df = nan_mapping.nan_decoding(df)
         nan_percentages = cca.nan_percentage_per_column(df)
         st.dataframe(nan_percentages.to_frame(name="Missing (%)"))
     except:
         pass
 
-    st.subheader("📄 Dataset Preview")
-    st.dataframe(df.head())
-
-    if st.button("Continue with dropping columns"):
-        st.session_state.step = "drop_columns"
-        st.session_state.df = df  # Save to session
 
 # Step 2: Drop Columns UI                                                                                               Step 2: Drop Columns UI
 if st.session_state.step == "drop_columns":
