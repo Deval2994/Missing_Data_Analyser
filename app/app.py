@@ -27,7 +27,8 @@ use_default = st.sidebar.radio("Choose dataset source:", ("Use my dataset", "Upl
 df = None
 
 if use_default == "Use my dataset":
-    df = pd.read_csv('data/healthcare_dataset.csv')
+    default_path = os.path.join(os.getcwd(), "data", "healthcare_dataset.csv")
+    df = pd.read_csv(default_path)
     st.success("Using default dataset - healthcare_dataset.csv")
 
 else:
