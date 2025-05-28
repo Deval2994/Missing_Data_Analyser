@@ -18,6 +18,7 @@ import nan_mapping
 st.info("I built a web app to show my understanding of Complete Case Analysis (CCA) and imputation techniques."
              " The app lets users upload a dataset, perform CCA or various imputations, and visualize how the data "
              "distributions change before and after cleaning by comparing both CCA and imputation side by side.")
+
 # Title
 st.title("🧹 Missing Data Analysis")
 # Sidebar for dataset selection                                                                                         Sidebar for dataset selection
@@ -63,7 +64,7 @@ if df is not None and st.session_state.step == "preview":
         st.session_state.df = df  # Save to session
 
 
-if df is not None:
+if df is not None and st.session_state.step != "handle_missing_value":
     try:
         st.header('❗Missing values in column, drop if 30-40%')
         st.markdown("**recommendation:** *drop if >30%, because the data loss will be more than 30%, which is not okay for CCA*")
@@ -111,6 +112,17 @@ if st.session_state.step == "drop_columns":
 
 # Step 3: graph representation                                                                                          Step 3: graph representation
 if st.session_state.step == "handle_missing_value":
+
+    df_types = pd.DataFrame(columns=['column', 'dtypes'])
+
+    for c in df.columns:
+        df_types.loc[len(df_types)] = [c, df[c].dtype]
+
+    try:
+        st.subheader('Columns with data types')
+        st.dataframe(df_types)
+    except Exception as e:
+        st.subheader(e)
 
     col1, col2 = st.columns(2)
     df = st.session_state.df
