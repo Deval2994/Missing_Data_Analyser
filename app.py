@@ -3,6 +3,7 @@ Description :   Main entry point of the app. Manages the user interface (likely 
                 (like file uploads, cleaning options), and coordinates calling functions from other modules
             *** ADD OPTION TO DROP UNWANTED COLUMNS ***
 """
+from pathlib import Path
 
 import streamlit as st
 import pandas as pd
@@ -27,7 +28,11 @@ use_default = st.sidebar.radio("Choose dataset source:", ("Use my dataset", "Upl
 df = None
 
 if use_default == "Use my dataset":
-    df = pd.read_csv('healthcare_dataset.csv')
+    current_dir = Path(__file__).parent
+    default_path = current_dir / "healthcare_dataset.csv"
+
+    # Load the dataset
+    df = pd.read_csv(default_path)
     st.success("Using default dataset - healthcare_dataset.csv")
 
 else:
