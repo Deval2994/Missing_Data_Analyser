@@ -37,15 +37,4 @@ Preprocessing step in your data science or ML pipeline
 
 Teaching tool for understanding the impact of missing data
 
-Exploratory analysis of real-world messy datasets
-
-app/
-├── app.py                # Streamlit app entry point
-├── cca.py                # Complete Case Analysis logic
-├── imputation.py         # Imputation techniques (mean, median, mode, KNN)
-├── mcar_test.py          # MCAR detection using Little's test
-├── data_loader_information.py  # Data insights and stats
-├── utils.py              # Helper functions
-├── visualizations.py     # Visualization logic
-data/
-└── data.csv              # Sample dataset
+Exploratory analysis of real-world messy datasets 
