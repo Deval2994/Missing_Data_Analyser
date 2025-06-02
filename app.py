@@ -45,7 +45,7 @@ use_default = st.sidebar.radio("Choose dataset source:", ("Use my dataset", "Upl
 # Load the dataset based on user selection
 df = None
 
-if use_default == "sample dataset (healthcare)":
+if use_default == "Use my dataset":
     current_dir = Path(__file__).parent
     default_path = current_dir / "healthcare_dataset.csv"
 
