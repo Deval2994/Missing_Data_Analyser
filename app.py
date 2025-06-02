@@ -19,15 +19,22 @@ import streamlit as st
 
 st.set_page_config(
     page_title="Phantom Spectrum",
-    page_icon="👑",
+    page_icon="👻",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-st.title("Phantom Spectrum -- Mapping the missing. Restoring the full spectrum.")
+st.markdown("""
+<div style="display: flex; align-items: baseline;">
+    <h1 style="margin-right: 10px;">👻 Phantom Spectrum</h1>
+    <span style="color: gray; font-size: 16px;"> Mapping the missing. Restoring the full spectrum here</span>
+</div>
+""", unsafe_allow_html=True)
 
 st.info("I built a web app to show my understanding of Complete Case Analysis (CCA) and imputation techniques."
-             " The app lets users upload a dataset, perform CCA or various imputations, and visualize how the data "
+             "  CCA - where the data doesn't impute missing by itself but delete that entire row (data entry or  "
+             "information) which is best in some cases where data loss is minimum and data is MCAR. The app lets users "
+             "upload a dataset, perform CCA or various imputations, and visualize how the data "
              "distributions change before and after cleaning by comparing both CCA and imputation side by side.")
 # Title
 st.title("🧹 Missing Data Analysis")
