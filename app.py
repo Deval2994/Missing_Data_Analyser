@@ -40,12 +40,12 @@ st.info("I built a web app to show my understanding of Complete Case Analysis (C
 st.title("🧹 Missing Data Analysis")
 # Sidebar for dataset selection                                                                                         Sidebar for dataset selection
 st.sidebar.header("📂 Dataset Options")
-use_default = st.sidebar.radio("Choose dataset source:", ("Use my dataset", "Upload your own"))
+use_default = st.sidebar.radio("Choose dataset source:", ("sample dataset (healthcare)", "Upload your own"))
 
 # Load the dataset based on user selection
 df = None
 
-if use_default == "Use my dataset":
+if use_default == "sample dataset (healthcare)":
     current_dir = Path(__file__).parent
     default_path = current_dir / "healthcare_dataset.csv"
 
